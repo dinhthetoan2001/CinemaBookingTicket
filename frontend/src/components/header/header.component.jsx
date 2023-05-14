@@ -4,7 +4,7 @@ import './header.styles.scss';
 
 const Header = (props) => {
     function handleLogout() {
-        fetch('http://localhost:3001/api/logout', {
+        fetch({
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

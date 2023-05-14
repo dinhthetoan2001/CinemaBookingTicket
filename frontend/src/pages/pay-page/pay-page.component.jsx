@@ -1,65 +1,71 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import './pay-page.styles.scss';
 
 class PayPage extends React.Component {
-    constructor(props){
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            fullName: '',
-            username: '',
-            city: '',
-            state: '',
-            zip: '',
-            nameOnCard: '',
-            cardNumber: '',
-            expirationMonth: '',
-            expirationYear: '',
-            cvv: '',
-            bookingDetails: props.match.params.imdbID + '/' + props.match.params.date + '/' + props.match.params.show + '/' + props.match.params.seat
-        }
+    this.state = {
+      fullName: '',
+      username: '',
+      city: '',
+      state: '',
+      zip: '',
+      nameOnCard: '',
+      cardNumber: '',
+      expirationMonth: '',
+      expirationYear: '',
+      cvv: '',
+      bookingDetails: props.match.params.imdbID + '/' + props.match.params.date + '/' + props.match.params.show + '/' + props.match.params.seat
+    };
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (
+      this.state.fullName === '' ||
+      this.state.username === '' ||
+      this.state.city === '' ||
+      this.state.state === '' ||
+      this.state.zip === '' ||
+      this.state.nameOnCard === '' ||
+      this.state.cardNumber === '' ||
+      this.state.expirationMonth === '' ||
+      this.state.expirationYear === '' ||
+      this.state.cvv === ''
+    ) {
+      alert('Please fill out all the fields');
+    } else {
+      fetch('http://localhost:3001/api/pay', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(this.state)
+      })
+        .then(res => {
+          if (res.status === 400) {
+            alert('ERROR: Fill all the required fields');
+          } else {
+            alert("Payment done, booked seat successfully.");
+            const qrCodeImageUrl = 'http://www.example.net/foo/bar.html';
+            window.location.href = qrCodeImageUrl;
+          }
+        })
+        .catch(err => console.log(err));
     }
+  };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+  handleChange = (event) => {
+    const { value, name } = event.target;
 
-        if(this.state.fullName==='' || this.state.username==='' || this.state.city==='' || this.state.state==='' || 
-        this.state.zip==='' || this.state.nameOnCard==='' || this.state.cardNumber==='' || this.state.expirationMonth==='' || 
-        this.state.expirationYear==='' || this.state.cvv===''){
-            alert('Please fill out all the fields');
-        }
-
-        else{
-            fetch('http://localhost:3001/api/pay',{
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body: JSON.stringify(this.state)
-            })
-            .then(res => {
-                if(res.status === 400){
-                    alert("ERROR: Fill all the required fields");
-                }
-                else{
-                    alert("Payment done, booked seat successfully. You'll be redirected to your homepage");
-                    this.props.history.push('/');
-                }
-            })
-            .catch(err => console.log(err));
-        }
-    }
-
-    handleChange = (event) => {
-        const {value, name} = event.target;
-
-        this.setState({ [name]: value });
-    }
-
+    this.setState({ [name]: value });
+  }
     render() {
         return(
             <div className='pay-container'>
@@ -78,7 +84,7 @@ class PayPage extends React.Component {
                         <input className='input' name='cvv' type='text' label='CVV' placeholder='CVV' value={this.state.cvv} onChange={this.handleChange} required />
                         <div>
                             <button className='button' type='submit' onClick={this.handleSubmit}>Make Payment</button>
-                            <span>Total amount to be paid: Rs.100</span>
+                            <span>Total amount to be paid: 35.50$</span>
                         </div>
                     </form>
                 </div>

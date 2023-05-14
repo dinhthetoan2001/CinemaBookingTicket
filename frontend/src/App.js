@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    fetch('http://localhost:3001/api/signedin', {
+    fetch({
       method: 'GET',
       headers: {
         'Accept': 'application/json',

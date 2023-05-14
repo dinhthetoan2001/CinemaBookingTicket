@@ -12,7 +12,11 @@ const BookDate = ({ match }) => {
                 <Link to={`${match.url}/11:30`}><span>11:30</span></Link>
                 <Link to={`${match.url}/15:30`}><span>15:30</span></Link>
                 <Link to={`${match.url}/18:00`}><span>18:00</span></Link>
-                <Link to={`${match.url}/21:55`}><span>21:55</span></Link>
+                <Link to={`${match.url}/18:55`}><span>18:55</span></Link>
+                <Link to={`${match.url}/19:35`}><span>19:35</span></Link>
+                <Link to={`${match.url}/20:15`}><span>20:15</span></Link>
+                <Link to={`${match.url}/20:55`}><span>20:55</span></Link>
+                <Link to={`${match.url}/21:45`}><span>21:45</span></Link>
             </div>
         </div>
     );
