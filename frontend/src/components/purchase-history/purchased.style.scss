@@ -1,0 +1,37 @@
+.purchase-history-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 80px;
+        margin-top: 20px;
+    }
+  
+    .payment-info {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        font-size: 30px;
+  
+      p {
+        margin-bottom: 5px;
+      }
+  
+      hr {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .delete-button{
+    margin-left: 85%;
+    font-size: 20px;
+  }
+  .qrcode-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }

@@ -9,7 +9,10 @@ import Upcoming from './pages/upcoming/upcoming.component';
 import Popular from './pages/popular/popular.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import Header from './components/header/header.component';
+import QrCode from './pages/QrPage/qrcode.component';
 import CollectionDetailsPage from './pages/collection-details-page/collection-details-page.component';
+import ProfileUser from './components/profile-user/view-user-profile';
+import Purchased from './components/purchase-history/purchased.component';
 import KommunicateChat from "./chatbot";
 
 class App extends React.Component {
@@ -61,6 +64,9 @@ class App extends React.Component {
             <Route path='/nowshowing' component={NowShowing} />
             <Route path='/upcoming' component={Upcoming} />
             <Route path='/popular' component={Popular} />
+            <Route path='/ProfileUser' component={ProfileUser} />
+            <Route path='/purchasehistory' component={Purchased} />
+            <Route path='/paymentsucceed' component={QrCode} />
             <Route path='/signin' component={() => <SignInAndSignUp onAuthChange={this.onChange} />}  />
             <Route path='/:imdbID' component={CollectionDetailsPage} />
         </Switch>

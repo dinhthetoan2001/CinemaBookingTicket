@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 
 import './pay-page.styles.scss';
 
@@ -48,28 +47,49 @@ class PayPage extends React.Component {
         credentials: 'include',
         body: JSON.stringify(this.state)
       })
-        .then(res => {
+        .then((res) => {
           if (res.status === 400) {
-            alert('ERROR: Fill all the required fields');
+            alert("ERROR: Fill all the required fields");
           } else {
-            alert("Payment done, booked seat successfully.");
-            const qrCodeImageUrl = 'http://www.example.net/foo/bar.html';
-            window.location.href = qrCodeImageUrl;
+            alert("Payment done, booked seat successfully. You'll be redirected to your homepage");
+
+            // Store payment information in local storage
+            const paymentInfo = {
+              fullName: this.state.fullName,
+              username: this.state.username,
+              city: this.state.city,
+              state: this.state.state,
+              zip: this.state.zip,
+              nameOnCard: this.state.nameOnCard,
+              cardNumber: this.state.cardNumber,
+              expirationMonth: this.state.expirationMonth,
+              expirationYear: this.state.expirationYear,
+              cvv: this.state.cvv,
+              bookingDetails: this.state.bookingDetails
+            };
+
+            const purchaseHistory = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
+            purchaseHistory.push(paymentInfo);
+            localStorage.setItem('purchaseHistory', JSON.stringify(purchaseHistory));
+
+            this.props.history.push('/paymentsucceed');
           }
         })
         .catch(err => console.log(err));
     }
-  };
+  }
 
   handleChange = (event) => {
     const { value, name } = event.target;
 
     this.setState({ [name]: value });
   }
+
+
     render() {
         return(
             <div className='pay-container'>
-                <h2>Booking the seat {this.props.match.params.seat} at {this.props.match.params.show}hrs on {this.props.match.params.date} of {this.props.match.params.Title.replace(/\+/g, " ")}</h2>
+                <h2>Booking the seat {this.props.match.params.seat} at {this.props.match.params.show} o'clock on {this.props.match.params.date} of {this.props.match.params.Title.replace(/\+/g, " ")}</h2>
                 <div className='pay-form-container'>
                     <form>
                         <input className='input' name='fullName' type='text' label="Full Name" placeholder='Full Name' value={this.state.fullName} onChange={this.handleChange} required />
@@ -84,7 +104,7 @@ class PayPage extends React.Component {
                         <input className='input' name='cvv' type='text' label='CVV' placeholder='CVV' value={this.state.cvv} onChange={this.handleChange} required />
                         <div>
                             <button className='button' type='submit' onClick={this.handleSubmit}>Make Payment</button>
-                            <span>Total amount to be paid: 35.50$</span>
+                            <span>Total amount to be paid: Rs.100</span>
                         </div>
                     </form>
                 </div>

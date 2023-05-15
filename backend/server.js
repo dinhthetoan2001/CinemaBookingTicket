@@ -29,7 +29,8 @@ app.use(passport.session());
 
 
 //Connecting to MongoDB using mongoose
-
+mongoose.connect('mongodb://localhost:27017/MovieGoDB', {useNewUrlParser: true});
+mongoose.set("useCreateIndex", true);
 
 //Defining Schemas
 var userSchema = new mongoose.Schema({
@@ -62,27 +63,27 @@ passport.deserializeUser(function(id, done) {
 });
 
 //All our requests go in here
-//router.get('/signedin', function(req, res){
-//    res.json(req.isAuthenticated());
-//})
+router.get('/signedin', function(req, res){
+    res.json(req.isAuthenticated());
+});
 
-//router.post('/signin', function(req, res){
-  //  const user = new User({
-    //    username: req.body.username,
-      //  password: req.body.password
-    //});
+router.post('/signin', function(req, res){
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password
+    });
 
-    //req.login(user, function(err){
-      //  if (err) {
-       //     console.log(err);
-        //}
-        //else {
-          //  passport.authenticate("local")(req, res, function(){
-            //    res.send(user);
-            //});
-       // }
-    //});
-//});
+    req.login(user, function(err){
+        if (err) {
+            console.log(err);
+        }
+        else {
+            passport.authenticate("local")(req, res, function(){
+                res.send(user);
+            });
+        }
+    });
+});
 
 router.post('/register', function(req, res){
     User.register({fullName: req.body.fullName, 

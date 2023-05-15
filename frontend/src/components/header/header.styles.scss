@@ -1,94 +1,140 @@
 .header {
-    height: 70px;
-    width: 100%;
-    position: sticky;
-    top: 0px;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-    background-color: rgb(75, 75, 75);
-    color: white;
-    box-shadow: 0px 2px 4px black;
-  
-    .container {
-        padding: 0px 50px;
-    }
+  height: 70px;
+  width: 100%;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  background-color: rgb(75, 75, 75);
+  color: white;
+  box-shadow: 0px 2px 4px black;
 
-    .logo-container {
-        height: 100%;
-        width: 25%;
-        padding: 25px;
-        display: flex;
-        align-items: center;
+  .container {
+      padding: 0px 50px;
+  }
 
-        .logo {
-            color: rgb(0, 195, 255);
-            font-size: 30px;
-            font-style: oblique;
-            font-weight: bolder;
-            text-shadow: -1px 1px 4px black;
+  .logo-container {
+      height: 100%;
+      width: 25%;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+
+      .logo {
+          color: rgb(0, 195, 255);
+          font-size: 30px;
+          font-style: oblique;
+          font-weight: bolder;
+          text-shadow: -1px 1px 4px black;
+      }
+  }
+
+  .options {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .option {
+          padding: 10px 15px;
+          cursor: pointer;
+          color: white;
+          font-size: 20px;
+          &:hover{
+              background-color: rgb(0, 195, 255);
+              color: white;
+          }
+          &:focus{
+              background-color: rgb(0, 195, 255);
+              color: white;
+          }
+      }
+  }
+
+  .sign-in-container {
+      height: 100%;
+      width: 25%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .sign-in {
+          padding: 5px 20px;
+          cursor: pointer;
+          color: white;
+          background-color: rgb(0, 195, 255);
+          font-size: 20px;
+          //border: 1px solid rgb(0, 195, 255);
+          border-radius: 10px;
+          margin: -25px;
+          
+          &:hover{
+              color: white;
+              background-color: rgb(0, 130, 170);
+          }
+      }
+
+      .log-out {
+          padding: 5px 20px;
+          cursor: pointer;
+          color: rgb(196, 27, 27);
+          background-color: rgb(43, 69, 185);
+          font-size: 20px;
+          //border: 1px solid rgb(255, 0, 0);
+          border-radius: 10px;
+          
+          &:hover{
+              color: rgb(26, 226, 200);
+              background-color: rgb(230, 146, 146);
+          }
+      }
+      .user-profile {
+        position: relative;
+      }
+      .avatar {
+        cursor: pointer;
+        height: 60px;
+      }
+      .dropdown-menu {
+        width: 105px;
+        background-color: #04ffb7;
+        border: 1px solid #000;
+        border-radius: 10px;
+        padding: 20px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        display: none;
+    
+        &.open {
+          display: block;
         }
-    }
-  
-    .options {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  
-        .option {
-            padding: 10px 15px;
-            cursor: pointer;
-            color: white;
-            font-size: 20px;
-            &:hover{
-                background-color: rgb(0, 195, 255);
-                color: white;
-            }
-            &:focus{
-                background-color: rgb(0, 195, 255);
-                color: white;
-            }
+    
+        .dropdown-item {
+          display: flex;
+          align-items: center;
+          padding: 5px 0;
+        
+    
+          a {
+            margin-left: 10px;
+            margin-top: 10px;
+            color: #333;
+            text-decoration: none;
+          }
         }
-    }
-
-    .sign-in-container {
-        height: 100%;
-        width: 25%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-
-        .sign-in {
-            padding: 5px 20px;
-            cursor: pointer;
-            color: white;
-            background-color: rgb(0, 195, 255);
-            font-size: 20px;
-            //border: 1px solid rgb(0, 195, 255);
-            border-radius: 10px;
-            
-            &:hover{
-                color: white;
-                background-color: rgb(0, 130, 170);
-            }
+        .dropdown-item1{
+            display: flex;
+            margin-top: 10px;
+            padding-left: 4px;
         }
-
-        .log-out {
-            padding: 5px 20px;
-            cursor: pointer;
-            color: white;
-            background-color: rgb(255, 60, 60);
-            font-size: 20px;
-            //border: 1px solid rgb(255, 0, 0);
-            border-radius: 10px;
-            
-            &:hover{
-                color: white;
-                background-color: red;
-            }
-        }
+      }
     }
-}
+      .user-profile:hover .dropdown-menu {
+        display: block;
+      }
+  }
+

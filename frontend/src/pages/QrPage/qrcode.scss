@@ -1,0 +1,13 @@
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Adjust as needed */
+  }
+.centered-text {
+    text-align: center;
+}
+.larger-text {
+    font-size: 45px; /* Adjust as needed */
+}
